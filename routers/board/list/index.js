@@ -11,10 +11,10 @@ router.get('/write',(req,res)=>{
     res.send('write')
 })
 
-router.post('write',(req,res)=>{
+router.post('/write',(req,res)=>{
     res.redirect('/board/list')
 })
 
-router.use('view',viewRouter)
+router.use('/view',viewRouter)
 
 module.exports = router
