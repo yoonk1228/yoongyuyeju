@@ -1,5 +1,4 @@
 exports.login = (req,res) => {
-<<<<<<< HEAD
     res.render('user/login')
 }
 
@@ -18,7 +17,3 @@ exports.login = (req,res) => {
 //         res.send(alertmove('/user/login','아이디와 패스워드가 일치하지않습니다'))
 //     }
 // }
-=======
-    res.render(`user/login`)
-}
->>>>>>> 652c0388b5d66a7a8838d0ce0f3f9847ae33cc13
