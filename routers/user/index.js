@@ -7,6 +7,7 @@ const signupController = require('./signup.controller')
 const db = require('../../db')
 
 router.get('/login',loginController.login)
+<<<<<<< HEAD
 // router.post('/login',loginController.loginAction)
 
 router.post('/logout', (req, res)=>{
@@ -34,5 +35,8 @@ router.post('/resign', (req,res)=>{
     res.send('회원 탈퇴 완료')
 })
 // router.get('/logout', loginController)
+=======
+// router.post('/login',login.Contoller.loginAction)
+>>>>>>> 652c0388b5d66a7a8838d0ce0f3f9847ae33cc13
 
 module.exports = router
