@@ -1,17 +1,14 @@
 const express = require('express')
-// const adminRouter=require('./admin')
 const router = express.Router()
-const mainRouter = require('./main')
-
+// const adminRouter=require('./admin')
 const userRouter = require('./user')
-// const boardRouter = require('./board')
-// const adminRouter = require('./admin')
+const boardRouter = require('./board')
+const mainController = require("./main.controller");
+const adminRouter = require('./admin')
 
-router.use('/',mainRouter)
-router.use('/user',userRouter)
-// router.use('/board',boardRouter)
+router.use('/board',boardRouter)
 // router.use('/admin',adminRouter)
-
-// router.use('/admin',adminRouter)
+router.use('/user', userRouter)
+router.get('/',mainController.main)
 
 module.exports = router
