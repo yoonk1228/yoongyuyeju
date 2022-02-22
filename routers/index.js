@@ -1,10 +1,9 @@
 const express = require('express')
 const router = express.Router()
-// const adminRouter=require('./admin')
 const userRouter = require('./user')
 const boardRouter = require('./board')
 const mainController = require("./main.controller");
-const adminRouter = require('./admin')
+// const adminRouter = require('./admin')
 
 router.use('/board',boardRouter)
 // router.use('/admin',adminRouter)
