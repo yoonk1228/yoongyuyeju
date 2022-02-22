@@ -24,6 +24,15 @@ node server
 node mini project 서버시작, 포트번호 : ${PORT}
 
 
-## 라우터 작업시
+## DB.sql 업데이트
 
-routers 디렉토리 안에 각자 맡은 영역 디렉토리 생성 후 작업
+1. etc 디렉토리의 sql 파일 각각 source로 실행
+
+2. mysql 접속
+```
+mysql
+> source ~프로젝트 경로~ /DB.sql
+> source ~프로젝트 경로~ \DB.sql
+```
+
+3. local mysql에 접속해 DB확인.
