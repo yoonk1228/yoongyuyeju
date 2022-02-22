@@ -10,7 +10,8 @@ const mainController = require("./main.controller");
 // const adminRouter = require('./admin')
 
 // router.use('/',mainRouter)
-// router.use('/user',userRouter)
+const userRouter = require('./user')
+router.use('/user',userRouter)
 router.use('/board',boardRouter)
 // router.use('/admin',adminRouter)
 
