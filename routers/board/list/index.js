@@ -9,16 +9,13 @@ const pool = require('../../../db.js')
 
 router.get('/view',(req,res)=>{
     pool.getConnection( (err,conn)=>{
-        conn.query('SELECT * FROM board',(error,result)=>{
-            let index = req.query.index
-            
-            conn.query(`SELECT * FROM board WHERE idx=${index}`,(error,result)=>{
-                let [data] = result
-
-                res.render('board/list/view.html',{
-                    data,
-                    index,
-                })
+        let index = req.query.index
+        conn.query(`SELECT * FROM board WHERE idx=${index}`,(error,result)=>{
+            let [data] = result
+            conn.release();
+            res.render('board/list/view.html',{
+                data,
+                index,
             })
         })
     })
@@ -50,27 +47,29 @@ router.post('/write',(req,res)=>{
     let nickname = req.body.nickname
     let story = req.body.story
 
-    
-
     pool.getConnection( (err,conn)=>{
     conn.query(`insert into board (subject,nickname,story) values("${subject}","${nickname}","${story}")`,(error,result)=>{
         // console.log(result)
+        if(error) throw error
+        console.log(result)
+        res.redirect('/board/list')
         })
+        conn.release()
     })
-    res.redirect('/board/list')
+    
 })
 
 
 
 router.post('/delete',(req,res)=>{
-    pool.getConnection( (err,conn)=>{
-        conn.query('SELECT * FROM board',(error,result)=>{
-            let index = req.body.index
-            let del = result[index-1]
+    let index = req.body.index
 
-            conn.query(`delete from board where idx='${index}'`,(error,result)=>{
-                res.redirect('../list')
-            })
+    pool.getConnection( (err,conn)=>{
+        conn.query(`delete from board where idx=${index}`,(error,result)=>{
+            // if(error) throw error
+            // 에러가 뜨면 걍 진행해라
+            res.redirect('/board/list')
+            conn.release()
         })
     })
 })
