@@ -14,18 +14,18 @@ router.post('/logout', (req, res)=>{
     res.send('로그아웃 완료')
 })
 
-router.get('/profile', (req,res)=>{
-    res.render('user/profile')
-})
+// router.get('/profile', (req,res)=>{
+//     res.render('user/profile')
+// })
 
 // todo 규리님이 23일에 작업
 // router.get('/signup', signupController.join)
 //
 // router.post('/signup', signupController.joinAction)
 
-router.get('/update', (req,res)=>{
-    res.render('user/infoupdate')
-})
+// router.get('/update', (req,res)=>{
+//     res.render('user/infoupdate')
+// })
 
 router.post('/update', (req,res)=>{
     res.send('회원정보수정 완료')
