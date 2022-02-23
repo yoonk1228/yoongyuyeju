@@ -6,12 +6,13 @@ CREATE TABLE personal(
     userid VARCHAR(15) NOT NULL PRIMARY KEY,
     userpw VARCHAR(20) NOT NULL,
     username VARCHAR(20) NOT NULL,
-    nickname VARCHAR(20) NOT NULL PRIMARY KEY,
+    nickname VARCHAR(20) NOT NULL,
     gender VARCHAR(2) NOT NULL,
     adress VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL PRIMARY KEY,
+    email VARCHAR(50) NOT NULL,
     tel VARCHAR(11) NOT NULL,
-    birth VARCHAR(6) NOT NULL
+    birth VARCHAR(6) NOT NULL,
+    UNIQUE INDEX(nickname, email)
 ) DEFAULT CHARSET=utf8mb4;
 
 
