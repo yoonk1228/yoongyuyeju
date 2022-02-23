@@ -2,37 +2,23 @@ const express=require('express')
 const app=express()
 const router=express.Router()
 
-app.use(express.urlencoded({extended:true,}))
-
-router.post('/login',(req,res)=>{
-    console.log('로그인완료')
-    res.send('로그인')
+router.post('/forced_out',(req,res)=>{
+    console.log('강퇴완료')
+    res.send('강퇴')
 })
 
-
-app.get('/admin/list/forced out',(req,res)=>{
-    res.render('')
+router.post('/managing_board',(req,res)=>{
+    console.log('게시판관리완료')
+    res.send('게시판삭제')
 })
 
-
-app.post('/admin/list/forced out',(req,res)=>{
-    res.render('')
+router.post('/level_adjustment',(req,res)=>{
+    console.log('등급관리완료')
+    res.send('등급관리')
 })
 
-app.get('/admin/list/Managing_board',(req,res)=>{
-    res.render('')
-})
-
-app.post('/admin/list/Managing_board',(req,res)=>{
-    res.render('')
-})
-
-app.get('/admin/list/level adjustment',(req,res)=>{
-    res.render('')
-})
-
-app.post('/admin/list/level adjustment',(req,res)=>{
-    res.render('')
+router.get('/',(req,res)=>{
+    res.render('admin/manage')
 })
 
 module.exports=router

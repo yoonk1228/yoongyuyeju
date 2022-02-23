@@ -10,6 +10,7 @@ const database = process.env.DB_DATABASE || 'YGYJ'
 const config = {host,user,password,database}
 const pool = mysql.createPool(config)
 
+//여기부터 아래 주석까지 '규리' 만듦
 exports.getConnection = (cb) => {
     pool.getConnection((err,conn)=>{
         if(!err) {
@@ -19,3 +20,4 @@ exports.getConnection = (cb) => {
         pool.releaseConnection(conn)
     })
 }
+//여기까지

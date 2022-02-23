@@ -8,19 +8,22 @@ const pool = require('../../../db.js')
 //  --------------- http://localhost:3000/board/list/ㄱㄱㄱㄱㄱ -------------
 
 router.get('/view',(req,res)=>{
-    res.render('board/list/view.html')
+    pool.getConnection( (err,conn)=>{
+        conn.query('SELECT * FROM board',(error,result)=>{
+            let index = req.query.index
+            
+            conn.query(`SELECT * FROM board WHERE idx=${index}`,(error,result)=>{
+                let [data] = result
+
+                res.render('board/list/view.html',{
+                    data,
+                    index,
+                })
+            })
+        })
+    })
 })
 
-
-
-// router.get('/view',(req,res)=>{
-//     let index =req.query.index
-//     let data = boarddata[index-1]
-//     res.render('board/list/view.html',{
-//         data,
-//         index,
-//     })
-// })
     // 게시물이 올라가는 데이터베이스에 하나씩 올라갔겠지?
     // 걔네들은 배열로 만들어져있어야하고 배열은 하나하나 인덱스가 있다.
     // 그 인덱스값을 보여주게 만들어주는 작업을 하면된다.
@@ -38,7 +41,6 @@ router.get('/write',(req,res)=>{
     
     res.render('board/list/write.html')
 })
-// write 의 get은 뭐 없다. 걍 그 페이지로 옮겨주기만하면 된다.
 
 
 
@@ -48,27 +50,29 @@ router.post('/write',(req,res)=>{
     let nickname = req.body.nickname
     let story = req.body.story
 
+    
+
     pool.getConnection( (err,conn)=>{
     conn.query(`insert into board (subject,nickname,story) values("${subject}","${nickname}","${story}")`,(error,result)=>{
         // console.log(result)
+        })
     })
-})
     res.redirect('/board/list')
 })
 
 
 
-
-
-
-
-
-
-
-
-
 router.post('/delete',(req,res)=>{
-    res.redirect('/board/list.html')
+    pool.getConnection( (err,conn)=>{
+        conn.query('SELECT * FROM board',(error,result)=>{
+            let index = req.body.index
+            let del = result[index-1]
+
+            conn.query(`delete from board where idx='${index}'`,(error,result)=>{
+                res.redirect('../list')
+            })
+        })
+    })
 })
 
 // router.post('/delete',(req,res)=>{

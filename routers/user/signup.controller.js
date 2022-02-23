@@ -19,7 +19,7 @@ exports.joinAction = (req,res) => {
 
     // let sql = `insert into personal(userid, userpw, username, nickname, gender, adress, email, tel, birth) values('${userid}','${userpw}','${username}', '${nickname}','${gender}', '${adress}', '${email}', '${tel}', '${birth}');`
     let sql2 = `INSERT INTO personal(userid,userpw,username,nickname,gender,adress,email,tel,birth)
-    values(?,?,?,?,?,?,?,?,?)
+    values(?,?,?,?ss,?,?,?,?,?)
     `
     let prepare = [userid,userpw,username,nickname,gender,adress,email,tel,birth]
     db.getConnection( conn => {

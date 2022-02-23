@@ -1,10 +1,21 @@
 const express = require('express')
 const router = express.Router()
 const listRouter = require('./list/index.js')
-// const data = require('../../moels/뭐 어디지?')
+const pool = require('../../db.js')
+
+
+
 
 router.get('/list',(req,res)=>{
-    res.render('board/list.html')
+    pool.getConnection( (err,conn)=>{
+        conn.query('SELECT * FROM board;',(error,result)=>{
+            let listdata = result
+            
+            res.render('board/list.html',{
+                list:listdata
+            })
+        })
+    })
 })
 
 // router.get('/list',(req,res)=>{
