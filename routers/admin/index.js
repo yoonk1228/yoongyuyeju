@@ -2,36 +2,42 @@ const express=require('express')
 const app=express()
 const router=express.Router()
 
-app.use(express.urlencoded({extended:true,}))
-
-router.post('/login',(req,res)=>{
-    console.log('로그인완료')
-    res.send('로그인')
+router.post('/forced_out',(req,res)=>{
+    console.log('강퇴완료')
+    res.send('강퇴')
 })
 
+router.post('/managing_board',(req,res)=>{
+    console.log('게시판관리완료')
+    res.send('게시판삭제')
+})
 
-app.get('/admin/list/forced out',(req,res)=>{
+router.post('/level_adjustment',(req,res)=>{
+    console.log('등급관리완료')
+    res.send('등급관리')
+})
+
+app.get('/admin/user/forced out',(req,res)=>{
     res.render('')
 })
 
-
-app.post('/admin/list/forced out',(req,res)=>{
+app.post('/admin/user/forced out',(req,res)=>{
     res.render('')
 })
 
-app.get('/admin/list/Managing_board',(req,res)=>{
+app.get('/admin/board/Managing_board',(req,res)=>{
     res.render('')
 })
 
-app.post('/admin/list/Managing_board',(req,res)=>{
+app.post('/admin/board/Managing_board',(req,res)=>{
     res.render('')
 })
 
-app.get('/admin/list/level adjustment',(req,res)=>{
+app.get('/admin/user/level adjustment',(req,res)=>{
     res.render('')
 })
 
-app.post('/admin/list/level adjustment',(req,res)=>{
+app.post('/admin/user/level adjustment',(req,res)=>{
     res.render('')
 })
 
