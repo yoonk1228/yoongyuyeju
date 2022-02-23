@@ -17,28 +17,8 @@ router.post('/level_adjustment',(req,res)=>{
     res.send('등급관리')
 })
 
-app.get('/admin/user/forced out',(req,res)=>{
-    res.render('')
-})
-
-app.post('/admin/user/forced out',(req,res)=>{
-    res.render('')
-})
-
-app.get('/admin/board/Managing_board',(req,res)=>{
-    res.render('')
-})
-
-app.post('/admin/board/Managing_board',(req,res)=>{
-    res.render('')
-})
-
-app.get('/admin/user/level adjustment',(req,res)=>{
-    res.render('')
-})
-
-app.post('/admin/user/level adjustment',(req,res)=>{
-    res.render('')
+router.get('/',(req,res)=>{
+    res.render('admin/manage')
 })
 
 module.exports=router
