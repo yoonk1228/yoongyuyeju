@@ -1,19 +1,38 @@
+const db = require('../../db')
+const {alertmove} = require('../../util/alert')
 exports.login = (req,res) => {
     res.render('user/login')
 }
 
-// exports.loginAction = (req,res)=>{
-//     let {userid,userpw} = req.body
-//     let [item] = user.filter(v=>(v.userid == userid && v.userpw == userpw))
-//     //위 코드의 목적:
-//     //사용자에게 받은정보를 서버에있는 리스트중에서 하나만 가져오기위해서.
-//     //filter() = forEach()
-//     if(item != undefined){
-//         //로그인 할수있는경우
-//         req.session.user={ ...item }
-//         res.redirect('/')
-//     }else{
-//         //로그인 못하는경우
-//         res.send(alertmove('/user/login','아이디와 패스워드가 일치하지않습니다'))
-//     }
-// }
+exports.loginAction = (req,res)=>{
+    let {userid,userpw} = req.body
+
+    db.getConnection(conn =>{
+        conn.query('SELECT * from personal where userid=? and userpw=?;', [userid, userpw], (error, result)=>{
+        if(result.length !=0){ //로그인된거 => 메인홈페이지
+            req.session.userid = result[0].userid;
+            req.session.userpw = result[0].userpw;
+            req.session.username = result[0].username;
+            req.session.nickname = result[0].nickname;
+            req.session.gender = result[0].gender;
+            req.session.adress = result[0].adress;
+            req.session.email = result[0].email;
+            req.session.tel = result[0].tel;
+            req.session.birth = result[0].birth;
+            res.redirect('/')
+            
+        }
+
+        else {res.send(alertmove('/user/login', '아이디와 패스워드를 확인하세요.'))} //안된거
+    })
+
+    })
+}
+
+exports.logoutAction = (req, res)=>{
+    req.session.destroy(()=>{
+        req.session
+    })
+
+    res.send(alertmove('/','로그아웃 완료'))
+}
